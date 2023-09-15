@@ -1,0 +1,187 @@
+<mat-tab-group animationDuration="1000ms">
+  <mat-tab label="Set">
+    <div class="container">
+      <p>
+        The Set object lets you store unique values of any type, whether
+        primitive values or object references.
+      </p>
+      <pre class="hljs language-javascript">
+        <code>array = [1, 2, 5];
+         array2 = [5, 6, 7];
+    
+         this.setArray = new Set(this.array.concat(this.array2));
+         this.spreadSet = new Set([...this.array, ...this.array2]);
+        </code>
+        
+      
+        </pre>
+
+      <button (click)="set()">click to see result!</button>
+
+      <code *ngIf="displaySet">Set: {{ displaySet }}</code>
+    </div>
+  </mat-tab>
+  <mat-tab label="Truthy and Falsy">
+    <div class="container">
+      <p>When we need to convert a value to either true or false</p>
+      <p>// use if (Boolean(x) === Boolean(y))</p>
+      <p>// or if (!!x === !!y)</p>
+      <p>The following values are always falsy:</p>
+      <ul>
+        <li><code>false</code></li>
+        <li><code>0</code> (zero)</li>
+        <li><code>-0</code> (minus zero)</li>
+        <li><code>0n</code> (<code>BigInt</code> zero)</li>
+        <li>
+          <code>''</code>, <code>""</code>, <code>``</code> (empty string)
+        </li>
+        <li><code>null</code></li>
+        <li><code>undefined</code></li>
+        <li><code>NaN</code></li>
+      </ul>
+      <p>Everything else is <strong>truthy</strong>. That includes:</p>
+      <ul>
+        <li><code>'0'</code> (a string containing a single zero)</li>
+        <li><code>'false'</code> (a string containing the text “false”)</li>
+        <li><code>[]</code> (an empty array)</li>
+        <li>
+          <code>{{ '{' }}{{ '}' }}</code> (an empty object)
+        </li>
+        <li>
+          <code>function() {{ '{' }}{{ '}' }}</code> (an “empty” function)
+        </li>
+      </ul>
+    </div>
+  </mat-tab>
+  <mat-tab label="Array">
+    <div class="container">
+      <a
+        href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/some"
+      >
+        Array page!
+      </a>
+      <ul>
+        <li><code>Array.reduce()</code></li>
+        <li><code>Array.filter()</code></li>
+        <li><code>Array.find()</code></li>
+        <li><code>Array.splice()</code></li>
+        <li><code>Array.indexOf()</code></li>
+        <li><code>Array.some()</code></li>
+      </ul>
+    </div>
+  </mat-tab>
+  <mat-tab label="Map vs Tap vs Switch Tap">
+    <mat-tab-group>
+      <mat-tab label="Tap">
+        <div class="container">
+          <p>
+            The purpose of <code>tap</code> is to
+            <strong>execute an action</strong> keeping the same value of the
+            observable
+          </p>
+          <code>
+            <pre class="hljs language-javascript">
+              <span class="hljs-keyword">import</span> {{'{'}} <span class="hljs-keyword">from</span> {{'{'}}  <span class="hljs-keyword">from</span> <span class="hljs-string">"rxjs"</span>;
+              <span class="hljs-keyword">import</span>{{'{'}}  tap {{'}'}}  <span class="hljs-keyword">from</span> <span class="hljs-string">"rxjs/operators"</span>;
+              
+              <span class="hljs-title function_">from</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+                .<span class="hljs-title function_">pipe</span>(<span class="hljs-title function_">tap</span>(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> <span class="hljs-comment">/* do something with value */</span>))
+                .<span class="hljs-title function_">subscribe</span>(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(item));
+            </pre>
+          </code>
+
+          <div class="row">
+            <span>Outcome:</span>
+            <code> 1 </code>
+            <code> 2 </code>
+            <code> 3 </code>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Map">
+        <div class="container">
+          <p>
+            The purpose of <code>map</code> is to <strong>transform</strong> the
+            emitted values of the observable
+          </p>
+
+          <code>
+            <pre class="hljs language-javascript">
+          <span class="hljs-keyword">import</span> {{'{'}} <span class="hljs-keyword">from</span> {{'{'}}  <span class="hljs-keyword">from</span> {{'}'}}  <span class="hljs-keyword">from</span> <span class="hljs-string">'rxjs'</span>;
+            <span class="hljs-keyword">import</span> {{'{'}}   map {{'}'}}  <span class="hljs-keyword">from</span> <span class="hljs-string">'rxjs/operators'</span>;
+            
+            <span class="hljs-title function_">from</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])
+              .<span class="hljs-title function_">pipe</span>(<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item + <span class="hljs-number">2</span>))
+              .<span class="hljs-title function_">subscribe</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(item));
+            </pre>
+          </code>
+          <div class="row">
+            <span>Outcome:</span>
+            <code> 3 </code>
+            <code> 4 </code>
+            <code> 5 </code>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="SwitchMap">
+        <div class="container">
+          <p>
+            The <code>switchMap</code> operator is basically a combination of
+            two operators
+          </p>
+          <p>
+            <code>switchMap</code> has only one active subscription at a time
+            from which the values are passed down to an observer. Once the
+            higher-order observable emits a new value,
+            <code>switchMap</code> executes the function to get a new inner
+            observable stream and switches the streams. It unsubscribes from the
+            current stream and subscribes to the new inner observable.
+          </p>
+          <pre class="hljs language-javascript">
+         <code>
+            const token$ = this.jwtService.getToken();
+            return token$.pipe(switchMap((token) => {{'{'}}
+               const headers = new HttpHeaders({{'{'}}'Authorization': 'Bearer ' + token });
+                return this.http.get(url, {{'{'}} headers }).pipe(
+                    tap((result: products[]) => {{'{'}}
+                        return result;
+                    })
+                  );
+            }));
+         </code>
+              </pre>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-tab>
+  <mat-tab label="Spread syntax">
+    <div class="container">
+      <p>
+        The spread syntax allows array elements to be passed in as individual
+        arguments.
+      </p>
+      <pre class="hljs language-javascript">
+        <code>
+          const parts = ["shoulders", "knees"];
+          const lyrics = ["head", ...parts, "and", "toes"];
+          //  ["head", "shoulders", "knees", "and", "toes"]
+
+          // Example 2:
+          let user = {{'{'}}name: 'John Doe', age: 10 };
+        </code>
+        <p>
+          Whereas an old way of doing this would have been to use the Object.assign() method this way:
+        </p>
+        <code>
+          let copiedUser = {{'{'}} ...user };
+          copiedUser.name = 'Clark Kent';
+          console.log(user); // {{'{'}}name: "John Doe", age: 10 }
+          console.log(copiedUser); // {{'{'}} name: "Clark Kent", age: 10 }
+        </code>
+      </pre>
+      <button (click)="spread()">Spread!</button>
+      <p class="blue">{{ user | json }}</p>
+      <p class="blue">{{ copiedUser | json }}</p>
+    </div>
+  </mat-tab>
+</mat-tab-group>

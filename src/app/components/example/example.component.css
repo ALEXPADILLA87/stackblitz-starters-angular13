@@ -1,0 +1,17 @@
+.mat-tab-group {
+  margin-bottom: 48px;
+}
+
+.mat-tab {
+  margin-left: 48px;
+}
+
+code,
+.blue {
+  color: rgb(18, 58, 189);
+  margin-left: 1ex;
+}
+
+.ml-3 {
+  margin-left: 3 !important;
+}

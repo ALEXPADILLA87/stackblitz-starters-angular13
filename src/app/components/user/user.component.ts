@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -13,7 +13,7 @@ import Validation from './utils/validation';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css'],
 })
-export class UserComponent {
+export class UserComponent implements OnInit {
   form: FormGroup = new FormGroup({
     fullname: new FormControl(''),
     username: new FormControl(''),
@@ -23,7 +23,9 @@ export class UserComponent {
     acceptTerms: new FormControl(false),
   });
   submitted = false;
-
+  get f(): { [key: string]: AbstractControl } {
+    return this.form.controls;
+  }
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
@@ -54,10 +56,6 @@ export class UserComponent {
         validators: [Validation.match('password', 'confirmPassword')],
       }
     );
-  }
-
-  get f(): { [key: string]: AbstractControl } {
-    return this.form.controls;
   }
 
   onSubmit(): void {

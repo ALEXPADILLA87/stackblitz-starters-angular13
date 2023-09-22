@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UserComponent } from './user.component';
 
 @NgModule({
-  declarations: [UserComponent],
+  declarations: [UserListComponent],
   imports: [BrowserModule, ReactiveFormsModule],
   providers: [],
 })

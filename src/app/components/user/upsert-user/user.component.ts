@@ -6,7 +6,6 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import Validation from './utils/validation';
 
 @Component({
   selector: 'app-user',
@@ -53,7 +52,7 @@ export class UserComponent implements OnInit {
         acceptTerms: [false, Validators.requiredTrue],
       },
       {
-        validators: [Validation.match('password', 'confirmPassword')],
+        validators: [PasswordValidation.match('password', 'confirmPassword')],
       }
     );
   }

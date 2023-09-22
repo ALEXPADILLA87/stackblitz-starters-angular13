@@ -11,7 +11,7 @@ import { UserComponent } from './components/user/user.component';
       { path: 'user', component: UserComponent },
       { path: 'cart', component: CartComponent },
       { path: 'example', component: ExampleComponent },
-      { path: '**', redirectTo: 'products' },
+      { path: '**', redirectTo: 'user' },
     ]),
   ],
   exports: [RouterModule],
